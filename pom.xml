@@ -5,7 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.tdm</groupId>
-    <artifactId>TeamDeathmatch</artifactId>
+
+    <!-- Dynamically set artifactId from GitHub repo name -->
+    <artifactId>${repo.name}</artifactId>
 
     <!-- Version now adapts to the GitHub tag -->
     <version>${revision}</version>
@@ -13,6 +15,10 @@
     <packaging>jar</packaging>
 
     <properties>
+        <!-- Extract repo name from GITHUB_REPOSITORY (owner/repo) -->
+        <repo.name>${env.GITHUB_REPOSITORY}</repo.name>
+        <repo.name>${repo.name.substring(repo.name.indexOf('/') + 1)}</repo.name>
+
         <!-- Pull version from GitHub tag name -->
         <revision>${env.GITHUB_REF_NAME}</revision>
 
